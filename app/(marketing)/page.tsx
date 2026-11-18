@@ -4,7 +4,7 @@ export const metadata = pageMeta("/");
 
 export default function HomePage() {
   return (
-    <main id="main">
+    <main id="main" data-page-type="home">
       <h1>House cleaning in the Illawarra</h1>
     </main>
   );

@@ -3,6 +3,8 @@ import { Fraunces, Figtree } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { StickyMobileBar } from "@/components/layout/StickyMobileBar";
+import { Analytics } from "@/components/analytics/Analytics";
+import { ConsentBanner } from "@/components/analytics/ConsentBanner";
 import { JsonLd } from "@/components/layout/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/schema";
 import "./globals.css";
@@ -23,6 +25,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <Footer />
         <StickyMobileBar />
+        <ConsentBanner />
+        <Analytics pageType="site" />
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
       </body>
     </html>
