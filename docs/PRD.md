@@ -38,6 +38,7 @@ The Illawarra search results are winnable. Page one for "end of lease cleaning s
 | Date | Version | Description | Author |
 |---|---|---|---|
 | 2026-11-19 | 1.0 | Initial PRD draft (BMAD auto mode) from research pack | John (BMAD PM agent) for the project owner |
+| 2026-11-19 | 1.2 | Owner's AI Visibility Checklist 2026 integrated: FR52–FR55, FR40 expanded (logo, foundingDate, Person schema), Stories 5.6, 6.6, 7.5. Grey-hat items kept only in their disclosed, honest form. | John (BMAD PM agent) |
 | 2026-11-19 | 1.1 | Ahrefs free-tool keyword data added (KD, volumes, competitor traffic). FR17 expanded with office × Wollongong, NDIS × Wollongong and conditional upholstery × Wollongong; Story 4.6 updated. Owner will supply the new phone number and address (LB3, LB4). | John (BMAD PM agent) |
 
 ### Launch Blockers (owner decisions and facts required before public launch)
@@ -116,7 +117,14 @@ The Illawarra search results are winnable. Page one for "end of lease cleaning s
 - FR37: The blog supports posts with a 40–60-word answer at the top, steps, a "When to call a pro" box linking to one service page, an FAQ, a named author with real experience, 900–1,600 words, Article JSON-LD, and links to one service page and two related posts. Post URLs contain no dates.
 - FR38: Every service, hub, pricing, guide and checklist page uses question-phrased H2s where the query is a question, opens each section with a 1–2 sentence direct answer containing the figure, and presents prices, inclusions and comparisons as HTML tables or lists.
 - FR39: The site publishes `robots.txt` (allowing Googlebot, Bingbot, OAI-SearchBot, ChatGPT-User, PerplexityBot, ClaudeBot and Google-Extended; disallowing portal and thank-you paths), `sitemap.xml` (indexable pages only, with lastmod) and `llms.txt` (hubs, services, pricing, guarantee, checklists, each with a one-line answer).
-- FR40: The site emits Organization and WebSite JSON-LD on every page. Organization has a stable `@id`, `sameAs` populated only from configured real profile URLs, and `knowsAbout`. It notifies IndexNow when pages are published or changed.
+- FR40: The site emits Organization and WebSite JSON-LD on every page. Organization has a stable `@id`, `name`, `description`, `logo`, `foundingDate` (once supplied), `knowsAbout`, and `sameAs` populated only from configured real profile URLs (Google Business Profile, LinkedIn, YouTube, Facebook, Instagram, directory profiles). A Person JSON-LD block for the founder/manager (name, role, `sameAs` LinkedIn) appears on `/about/` and `/facts/` once the owner supplies those details. The site notifies IndexNow when pages are published or changed.
+
+**AI visibility (from the AI Visibility Checklist 2026 supplied by the owner)**
+
+- FR52: A `/facts/` page lists the essential, verifiable facts about the business in a scannable list and table: legal and trading name, ABN, what we do, services with price-from, who we serve, service areas (four hubs with links), hours, founding date, guarantee terms, booking and payment options, contact details, and official profiles. It carries Organization + LocalBusiness JSON-LD and a visible "Last updated" date. Every fact comes from `config/site.ts`, so the page never disagrees with the rest of the site.
+- FR53: Additional citable content types: a cleaning glossary `/cleaning-glossary/` (bond clean, vacate clean, deep clean, steam cleaning, NDIS self-managed and similar terms, each with a one-sentence definition and a link to the relevant service); an Illawarra cleaning price statistics page `/illawarra-cleaning-prices-statistics/` built from our own published prices, booking data once it exists, and cited marketplace ranges with source and date; and "X vs Y" comparison pages (`/end-of-lease-vs-deep-cleaning/`, `/local-cleaner-vs-marketplace/`, `/regular-vs-one-off-cleaning/`) with a comparison table and an answer in the first 2–4 sentences.
+- FR54: Every article, guide, checklist, comparison, statistics, glossary, facts, service and hub page shows a visible "Last updated {date}" and emits matching `dateModified` (plus `datePublished` and `author` on articles). Dates come from content metadata, not from build time, so a rebuild does not fake freshness.
+- FR55: Article, guide and comparison pages open with a direct 2–4 sentence answer followed by a TL;DR box of 3 bullets, end with an FAQ, and include at least one hard number (price, time, count) and, where available, a quote from a named person with their role (e.g. our lead cleaner with years of experience). Vague claims ("many customers prefer") are not allowed; the banned-phrase check includes "many customers", "many people prefer", "studies show" without a source.
 
 **Customer, cleaner and admin apps (full parity, `my.` subdomain)**
 
@@ -650,6 +658,18 @@ so that I can join the team.
 3: Expired roles drop out of the page and schema automatically.
 4: `careers_applied` event fires.
 
+### Story 5.6: Facts page
+
+As an AI search engine or a cautious customer,
+I want one page with the verified facts about the business,
+so that I can describe and recommend it accurately.
+
+#### Acceptance Criteria
+1: `/facts/` renders FR52 fields from `config/site.ts` only; unresolved launch-blocker fields are omitted, never shown as placeholders.
+2: Facts appear as a definition list plus a services/price-from table; first paragraph states what the business does, where, and from what price in 2–4 sentences.
+3: Organization + LocalBusiness JSON-LD (and Person JSON-LD when founder details exist); visible "Last updated" date (FR54).
+4: Linked from the footer and `/about/`; included in `llms.txt`.
+
 ### Story 5.5: FAQ, contact, specials and legal pages
 
 As a visitor with a specific question,
@@ -713,6 +733,18 @@ so that I can fix it myself or book help.
 2: First four posts published (900–1,600 words each): "What does a bond clean include in NSW?", "Does NDIS cover cleaning?", "How to clean glass shower doors", "How much does a cleaner cost in Wollongong?" — each assigned a unique keyword cluster.
 3: Blog index lists posts by topic; no dates in URLs.
 
+### Story 6.6: Glossary, statistics and X-vs-Y pages
+
+As a reader comparing options or checking a term,
+I want short, sourced definitions, local price figures and side-by-side comparisons,
+so that I can decide quickly — and AI answers can quote them accurately.
+
+#### Acceptance Criteria
+1: `/cleaning-glossary/` with ≥ 20 terms, each a one-sentence definition linking to its service; DefinedTermSet JSON-LD.
+2: `/illawarra-cleaning-prices-statistics/` with tables of our published prices by service and home size, cited marketplace ranges (source + date), and, once ≥ 30 completed bookings exist, anonymised averages from our own data; "Last updated" visible.
+3: `/end-of-lease-vs-deep-cleaning/`, `/local-cleaner-vs-marketplace/`, `/regular-vs-one-off-cleaning/` each answer in the first 2–4 sentences, include a TL;DR, a comparison table and an FAQ (FR55).
+4: Each page passes the duplicate-paragraph, banned-phrase and schema checks.
+
 ### Story 6.5: AI-search layer
 
 As an AI search system,
@@ -764,6 +796,19 @@ so that we can appear in the local pack and AI answers.
 1: `docs/local-presence.md` documents GBP setup (name per LB1, categories, service areas, hours, UTM landing URL `/locations/shellharbour/?utm_source=gbp&utm_medium=organic&utm_campaign=shellharbour`), weekly posting routine and review-reply rule (48 hours).
 2: Citation tracker (`docs/citations.csv`) lists the directories in `competitors.md` §3 with URL, NAP used, date and status.
 3: Once live, GBP URL added to `BUSINESS_PROFILES` and redeployed.
+
+### Story 7.5: Off-site AI visibility programme
+
+As the owner,
+I want a clear, honest off-site plan,
+so that AI engines find consistent third-party evidence about Shellharbour Cleaning.
+
+#### Acceptance Criteria
+1: `docs/ai-visibility-playbook.md` maps every item of the owner's AI Visibility Checklist 2026 to an owner, a cadence and a status.
+2: Verification run with free tools and recorded: AI bot access (technicalseo.com AI bot access tool) shows all target crawlers allowed; JS-free rendering check (jetoctopus JS tool) shows key copy present without JavaScript; `site:` search confirms key pages indexed.
+3: Plan covers: GBP + directories with identical NAP; business description written to the criteria AI tools state when asked "what do you look for when recommending a cleaner in Wollongong"; YouTube channel (videos answering real questions, keywords in title/description/file name/first and last 10 seconds, chapters, companion blog post per video, channel in `sameAs`); Reddit (r/wollongong, r/illawarra, r/AusRenovation, r/AusFinance renting threads — genuine help first, no brand mentions until an established presence, per subreddit rules); LinkedIn long-form articles structured answer-first; local PR target of 3 mentions (e.g. Illawarra Mercury, local community newsletters, business chamber); podcast appearances; review requests that ask customers to describe the specific outcome.
+4: Third-party "best of" and comparison posts on Medium, Substack, LinkedIn or Quora are published only with clear authorship disclosure. No undisclosed self-ranking reports, fake reviews or content designed to mislead AI systems (ACCC misleading-conduct risk and platform penalties).
+5: Monthly "what do you know about Shellharbour Cleaning" check across ChatGPT, Gemini, Perplexity and Google AI Mode is added to the Story 10.3 routine, with corrections made at the source pages AI cites.
 
 ### Story 7.4: Pre-launch QA and go-live
 
@@ -943,6 +988,11 @@ so that I know what is working and what to write next.
 | FR44–FR48 cleaner and admin | 9.1–9.5, 10.2 |
 | FR49–FR50 measurement | 1.5, 2.2, 2.5, 7.2 |
 | FR51 imagery | 1.5, 1.6, 3.7, 9.2 |
+| FR52 facts page | 5.6 |
+| FR53 glossary, statistics, X vs Y | 6.6 |
+| FR54 last updated / dateModified | 1.4 (registry field), 5.6, 6.1–6.6 |
+| FR55 answer + TL;DR + numbers + quotes | 6.2–6.6, 1.5 (banned vague phrases) |
+| AI Visibility Checklist off-site items | 7.3, 7.5, 10.3 |
 | NFR1, NFR4 performance and Lighthouse | 1.5, 2.5 |
 | NFR2 static rendering | 1.1 |
 | NFR3 accessibility | 1.3, 1.5, 2.2 |

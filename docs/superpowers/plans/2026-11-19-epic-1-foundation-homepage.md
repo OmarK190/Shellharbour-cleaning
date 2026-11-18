@@ -8,7 +8,7 @@
 
 **Tech Stack:** next 16.4.6, react 19.3.1, TypeScript strict, tailwindcss 4.3.5 (`@theme`), @opennextjs/cloudflare 1.20.17, wrangler 4.164.0, vitest 5.1.1, @playwright/test 1.65.1, @axe-core/playwright 4.14.0, @lhci/cli 0.16.1, zod 4.6.7.
 
-**Spec:** `docs/PRD.md` (Epic 1, Stories 1.1–1.6; FR1–FR9, FR39–FR40, FR49, FR51; NFR1–NFR4, NFR8–NFR9, NFR12, NFR14–NFR17) and `docs/architecture.md`. Design source: `docs/research/ui-components.md` §2 and §5.
+**Spec:** `docs/PRD.md` v1.2 (Epic 1, Stories 1.1–1.6; FR1–FR9, FR39–FR40, FR49, FR51, FR54 registry field; NFR1–NFR4, NFR8–NFR9, NFR12, NFR14–NFR17) and `docs/architecture.md`. Design source: `docs/research/ui-components.md` §2 and §5.
 
 ## Global Constraints
 
@@ -17,7 +17,7 @@
 - No string `Cleaner at Door` / `cleaneratdoor` anywhere in source or output.
 - Tokens only from `app/globals.css` `@theme`: `--color-deep-water #0B3B4A`, `--color-ink #14232A`, `--color-sea-glass #DCEFEA`, `--color-sand #F5EDE1`, `--color-escarpment #2F6B4F`, `--color-coral #E8603C`, `--color-paper #FFFFFF`, `--color-alert #B3261E`; fonts Fraunces 600/700 (display), Figtree 400/600 (body); radii 10px / 20px / full.
 - Titles ≤ 60 chars, meta descriptions ≤ 155 chars, exactly one `<h1>` per page, trailing-slash canonical URLs, lowercase hyphenated paths.
-- No emoji; no banned phrases (`unlock`, `seamless`, `elevate`, `peace of mind`, `in today's busy world`, `we've got you covered`, `look no further`, `next level`); no stat-tile rows; no utility bar above nav; every listed hub/service name is a link.
+- No emoji; no banned phrases (`unlock`, `seamless`, `elevate`, `peace of mind`, `in today's busy world`, `we've got you covered`, `look no further`, `next level`, and vague-claim phrases from the AI Visibility Checklist: `many customers`, `many people prefer`, `studies show`); no stat-tile rows; no utility bar above nav; every listed hub/service name is a link.
 - Images: every image registered in `content/images/manifest.ts`; people images are `stock-people` (free, no watermark) or `real-*`; team/before-after/gallery slots accept only `real-*` and are hidden when empty; no AI-generated people.
 - Non-production responses send `X-Robots-Tag: noindex, nofollow`.
 - Commit messages: description only — no `Co-Authored-By`, no Claude attribution (owner's CLAUDE.md overrides the harness default). Never `git push` without owner confirmation; work on a feature branch `epic-1-foundation`.
@@ -76,7 +76,8 @@ test("health returns ok with commit", async () => {
   - `isResolved<T>(v: T | LaunchBlocker): v is T`
   - `SITE: { name: string; legalName: string | LaunchBlocker; abn: string; url: string | LaunchBlocker; email: string | LaunchBlocker; phone: { display: string; e164: string } | LaunchBlocker; address: PostalAddress | null | LaunchBlocker; hours: { days: string; open: "09:00"; close: "21:00"; display: string }; hubs: Hub[] }`
   - `type Hub = { slug: "shellharbour"|"kiama"|"dapto"|"wollongong"; name: string; path: string }`
-  - `BUSINESS_RATING: { value: number; count: number } | null = null`; `BUSINESS_PROFILES: string[] = []`
+  - `BUSINESS_RATING: { value: number; count: number } | null = null`; `BUSINESS_PROFILES: string[] = []` (real URLs only: GBP, LinkedIn, YouTube, Facebook, Instagram, directories)
+  - `SITE.description: string` (one factual sentence), `SITE.logo: string` (`/brand/logo.png`, 512×512), `SITE.foundingDate: string | null` (ISO, null until owner supplies), `SITE.founder: { name: string; role: string; linkedin: string } | null` (null until supplied)
   - `launchBlockers(): LaunchBlocker[]` (every unresolved value in `SITE`, plus LB1, LB5–LB8 flags from `config/launch.ts`)
   - `siteUrl(): string` — resolved URL, or `https://staging.shellharbourcleaning.invalid` when unresolved and not production.
 
@@ -165,7 +166,8 @@ test("footer links every hub and shows ABN", () => {
 **Interfaces:**
 - Consumes: `SITE`, `siteUrl()`, `BUSINESS_RATING`, `BUSINESS_PROFILES`.
 - Produces:
-  - `type PageEntry = { path: string; title: string; description: string; primaryKeyword: string; pageType: "home"|"service"|"hub"|"service-in-city"|"suburb"|"pricing"|"guide"|"checklist"|"blog"|"company"|"legal"; indexable: boolean }`
+  - `type PageEntry = { path: string; title: string; description: string; primaryKeyword: string; pageType: "home"|"service"|"hub"|"service-in-city"|"suburb"|"pricing"|"guide"|"checklist"|"blog"|"company"|"legal"|"facts"|"glossary"|"comparison"; indexable: boolean; updated: string /* ISO date from content, never build time (FR54) */ }`
+  - `personJsonLd(p: { name: string; role: string; linkedin: string })` → Person with `jobTitle`, `worksFor: { "@id": org }`, `sameAs: [linkedin]`
   - `PAGES: PageEntry[]`; `getPage(path: string): PageEntry`
   - `pageMeta(path: string, opts?: { image?: string; imageAlt?: string }): Metadata`
   - `canonicalUrl(pathOrUrl: string): string`
@@ -195,10 +197,16 @@ test("canonical strips query and keeps trailing slash", () => {
   expect(canonicalUrl("/?utm_source=gbp")).not.toContain("?");
   expect(canonicalUrl("/locations/kiama")).toMatch(/\/locations\/kiama\/$/);
 });
-test("organization has stable @id and no sameAs while profiles empty", () => {
+test("organization has stable @id, logo, description; no sameAs/foundingDate while unset", () => {
   const o = organizationJsonLd();
   expect(o["@id"]).toMatch(/#organization$/);
+  expect(o.logo).toMatch(/\/brand\/logo\.png$/);
+  expect(typeof o.description).toBe("string");
   expect(o).not.toHaveProperty("sameAs");
+  expect(o).not.toHaveProperty("foundingDate");
+});
+test("every page has a content-sourced updated date", () => {
+  for (const p of PAGES) expect(p.updated, p.path).toMatch(/^\d{4}-\d{2}-\d{2}$/);
 });
 test("local business has no aggregateRating while rating null and serves four hubs", () => {
   const lb = localBusinessJsonLd(SITE.hubs);
