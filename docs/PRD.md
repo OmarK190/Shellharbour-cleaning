@@ -38,6 +38,7 @@ The Illawarra search results are winnable. Page one for "end of lease cleaning s
 | Date | Version | Description | Author |
 |---|---|---|---|
 | 2026-11-19 | 1.0 | Initial PRD draft (BMAD auto mode) from research pack | John (BMAD PM agent) for the project owner |
+| 2026-11-19 | 1.1 | Ahrefs free-tool keyword data added (KD, volumes, competitor traffic). FR17 expanded with office × Wollongong, NDIS × Wollongong and conditional upholstery × Wollongong; Story 4.6 updated. Owner will supply the new phone number and address (LB3, LB4). | John (BMAD PM agent) |
 
 ### Launch Blockers (owner decisions and facts required before public launch)
 
@@ -45,8 +46,8 @@ The Illawarra search results are winnable. Page one for "end of lease cleaning s
 |---|---|---|---|
 | LB1 | Register "Shellharbour Cleaning" as a business name (ASIC) under ABN 81 480 225 391, check IP Australia | The Google Business Profile name must be the real registered name; "The Cleaning Co Shellharbour" trades locally | Do not create the GBP |
 | LB2 | Domain (e.g. `shellharbourcleaning.com.au`) and email (e.g. `hello@{domain}`) | Canonicals, schema `@id`, NAP | `SITE.url` stays a TODO; production build fails |
-| LB3 | Business address: NSW service-area business with address hidden, or a real Illawarra address | CleanerAtDoor's address (Munno Para SA) must not appear; NAP must match the GBP | Footer and schema show service areas only, no street address |
-| LB4 | Phone: reuse 1300 381 988 (owner decision) or a separate tracked number | One number on two brands' GBPs can link the listings and blur call tracking | Reuse 1300 381 988, flagged as a risk |
+| LB3 | Business address: owner will supply an Illawarra address (or confirm service-area business with address hidden) | CleanerAtDoor's address (Munno Para SA) must not appear; NAP must match the GBP | Owner to supply (2026-11-19); until then footer and schema show service areas only |
+| LB4 | Phone: owner will supply a new number for Shellharbour Cleaning | One number on two brands' GBPs can link the listings and blur call tracking | Owner to supply (2026-11-19) |
 | LB5 | Confirm which services are offered in the Illawarra (see FR10) | Only publish pages for services actually offered | Publish the "confirmed" set only |
 | LB6 | Confirm prices apply unchanged in NSW, and confirm the end of lease price grid | Prices are reused from live cleaneratdoor.com | Use live CleanerAtDoor prices |
 | LB7 | Real photos of team and of completed jobs (half-day shoot or job uploads) | Team profiles, before/after and job gallery must show real people and real work | Those sections stay hidden; hero/service/hub imagery uses free stock for people and AI-generated or stock images for non-people scenes (owner rule) |
@@ -83,7 +84,7 @@ The Illawarra search results are winnable. Page one for "end of lease cleaning s
 
 - FR15: The locations hub `/locations/` shows a map of the four hubs, the suburbs under each hub (each one a link to its suburb page or to the hub's quote tool prefilled with that suburb), and a postcode checker that answers "Do you clean in my suburb?" and links to the right hub.
 - FR16: Each hub page renders the guideline's 14 city-page sections in order. It carries 900–1,500 words of content unique to that hub, LocalBusiness (HouseCleaning) JSON-LD with `areaServed`, and is the GBP landing URL.
-- FR17: Service-in-city pages exist only for the combinations in `illawarra-keywords.md` §3. At launch these are end of lease × all four hubs, carpet steam × Shellharbour and Wollongong, and Airbnb × Kiama. Each has 800–1,200 words with local price examples, suburbs covered, local reviews for that service, the local team and local FAQs. A build check fails if any paragraph of 25 words or more appears on two service-in-city pages.
+- FR17: Service-in-city pages exist only for the combinations in `illawarra-keywords.md` §0 and §3. At launch these are end of lease × all four hubs, carpet steam × Shellharbour and Wollongong, office cleaning × Wollongong, NDIS cleaning × Wollongong, and Airbnb × Kiama. Upholstery/couch cleaning × Wollongong is added if the owner confirms the service (LB5); it is Ahrefs KD 0 with >100 searches a month. Each has 800–1,200 words with local price examples, suburbs covered, local reviews for that service, the local team and local FAQs. A build check fails if any paragraph of 25 words or more appears on two service-in-city pages.
 - FR18: A suburb page is generated only when `isPublishable(suburb)` returns true: three or more unique facts from {≥2 real reviews naming the suburb, ≥3 completed jobs, a named cleaner covering it, ≥2 OpenStreetMap features with element IDs, a cited local housing/rental data point}. Unpublished suburbs have no route and no sitemap entry. Suburb pages use the H1 "Cleaners in {Suburb} {Postcode}", are 500–900 words, list 6–12 nearby suburbs with distances, and link to their hub.
 - FR19: Every suburb record stores its postcode and LGA confirmed from Nominatim, with a `postcodeSource`. Every local-feature sentence traces to a stored OSM element ID.
 
@@ -593,7 +594,7 @@ I want a local page for that service,
 so that I can book a local cleaner for it.
 
 #### Acceptance Criteria
-1: `/shellharbour/carpet-steam-cleaning/`, `/wollongong/carpet-steam-cleaning/` and `/kiama/airbnb-cleaning/` published with the Story 4.5 rules.
+1: `/shellharbour/carpet-steam-cleaning/`, `/wollongong/carpet-steam-cleaning/`, `/wollongong/office-cleaning/`, `/wollongong/ndis-cleaning/` and `/kiama/airbnb-cleaning/` published with the Story 4.5 rules; `/wollongong/upholstery-cleaning/` added only if LB5 confirms the service.
 2: A config matrix controls which combinations exist; adding a gated combination requires local price examples, ≥ 2 local reviews for the service and a local cleaner (FR17).
 3: Sitemap and internal links update automatically from the matrix.
 

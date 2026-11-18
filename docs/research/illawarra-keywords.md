@@ -2,7 +2,79 @@
 
 Date: 2026-11-19.
 
-**Data limits:** Ahrefs `keywords-explorer-overview` returned `{"error": "Insufficient plan"}`, so there are no volume or KD figures. Demand evidence comes from Google Australia autocomplete (`suggestqueries`, `gl=au`, 20 seed queries, raw output kept in the session scratchpad) and live SERPs (WebSearch). An autocomplete suggestion shows the query has real search demand, but not how much. Volume and KD columns stay "no data" until a keyword tool with API access is connected, then rows are re-ranked.
+**Data sources:** (1) Ahrefs **free** tools run live in Chrome on 2026-11-19, country = Australia: Keyword Generator (volume bucket + KD label), Keyword Difficulty Checker (exact KD, referring domains needed, top-10 SERP with DR for positions 1–5), Website Traffic Checker (competitor organic keywords and top pages). (2) Google AU autocomplete. (3) Live SERPs via WebSearch. The Ahrefs API (MCP) is plan-gated, so the free web tools were used instead.
+
+## 0. Ahrefs live data — priority targets (buying intent × low difficulty)
+
+KD = Ahrefs Keyword Difficulty (0–100). "Links" = Ahrefs' estimate of referring domains needed for the top 10. Volume is the Ahrefs bucket, or the exact monthly figure where the Traffic Checker showed one.
+
+### Tier 1 — buy-ready, KD 0–5: build these first
+
+| Keyword | KD | Links | Volume (AU/mo) | Who ranks now (DR, positions 1–5) | Target URL |
+|---|---|---|---|---|---|
+| end of lease cleaning wollongong | 0 | 0 | >100 | Local pack; Jim's suburb pages Fairy Meadow + Corrimal East (DR52); sparkleclean.au "Best EOL Wollongong 2026 ranked" listicle (DR28); Facebook group thread | `/wollongong/end-of-lease-cleaning/` |
+| bond cleaning wollongong | 3 | 4 | <100 | Jim's (DR52), bondcleaninginwollongong.com.au (DR3), Reddit r/wollongong (DR95), WCG, xitclean | same page as above (one URL per cluster) |
+| end of lease cleaning illawarra | 5 | 6 | <100 | Local pack; Jim's (DR52); elleishaspropertyservices (DR17); illawarracrew (DR3) | `/services/end-of-lease-cleaning/` |
+| cleaners shellharbour | 0 | 0 | <100 | Local pack; ciphersolutions (DR11); Facebook; hipages Every Inch Cleaning; directories | `/locations/shellharbour/` |
+| carpet cleaning shellharbour | 0 | 0 | <100 | Exact-match domains shellharbourcarpetcleaning.com.au, carpetcleaningshellharbour.com (DR0); Localsearch | `/shellharbour/carpet-steam-cleaning/` |
+| office cleaning wollongong | 0 | 0 | <100 | Local pack; commercialcleaningco (DR0); cleanspaces (DR0); ciphersolutions (DR11) | `/wollongong/office-cleaning/` (new) |
+| ndis cleaners wollongong | 0 | 0 | <100 | Local pack; sash.cleaning (DR2); clean4you (DR26); WCG (DR1); Maid2Match; Carevo | `/wollongong/ndis-cleaning/` (new) |
+| upholstery cleaning wollongong | 0 | 0 | >100 | Local pack; Electrodry `/wollongong/upholstery-cleaning/` (DR47); Ryan's (DR0); Stainbusters | `/wollongong/upholstery-cleaning/`, only if the service is offered |
+| couch cleaning wollongong | 0 | 0 | >100 | Local pack; Electrodry (DR47); squeakycleansofa (DR58); Stainbusters | same page as upholstery |
+| cleaners dapto, cleaning dapto, cleaners kiama, house cleaning shellharbour, end of lease cleaning shellharbour, end of lease cleaning kiama, deep cleaning wollongong | no Ahrefs data (too small for its database) | — | real demand per autocomplete | Marketplaces + Jim's templates | Hub and service-in-city pages; effectively zero competition |
+
+### Tier 2 — KD 19–26: winnable in 3–6 months with GBP + citations
+
+| Keyword | KD | Links | Volume | Notes | Target URL |
+|---|---|---|---|---|---|
+| carpet cleaning wollongong | 19 | 21 | >100 | Ryan's (DR0), Electrodry (DR47), Jim's (DR52) | `/wollongong/carpet-steam-cleaning/` |
+| commercial cleaning wollongong | 24 | 27 | >100 | **AI Overview present**; ciphersolutions (DR11), small local operators DR0 | `/commercial-cleaning/` |
+| end of lease cleaning near me | 26 | 30 | >100 | National, local-pack driven | GBP + `/services/end-of-lease-cleaning/` |
+
+### Tier 3 — highest volume, KD 33–47, but page one is weak sites
+
+| Keyword | KD | Links | Volume | Who ranks now | Target URL |
+|---|---|---|---|---|---|
+| house cleaning wollongong | 47 | 74 | 150 | illawarracrew (DR3, #3), Jim's (DR52), WCG (DR1), Sash, Miracle Maid, Awaken, Localsearch | `/locations/wollongong/` |
+| cleaners wollongong | 43 | 63 | 150 | illawarracrew (DR3, #2), Awaken (DR0), Airtasker (DR79), Reddit r/wollongong, Sash, WCG | `/locations/wollongong/` (same cluster) |
+| cleaning services wollongong | 33 | 41 | 150 | WCG (DR1), illawarracrew (DR3, #4), Jim's (DR52), Sash, bebrite | `/locations/wollongong/` (same cluster) |
+| cleaning company wollongong | — | — | 90 | illawarracrew #3 | `/locations/wollongong/` (same cluster) |
+| cleaner wollongong | — | — | 70 | illawarracrew #2 | `/locations/wollongong/` (same cluster) |
+| window cleaning wollongong | 43 | 63 | <100 | window-cleaning-wollongong.com.au (DR26), Jim's (DR52), Flash (DR5) | `/services/window-cleaning/` |
+
+The Ahrefs KD here is high because the score is driven by backlinks, but the sites actually ranking have DR 0–10, apart from Jim's and the marketplaces. A local business with a Google Business Profile, citations, real reviews and a dedicated Wollongong page can reach the top 3. Expect 6–12 months and 40–75 referring domains (local directories, suppliers, community sponsorships, local media).
+
+### Hidden demand: upholstery, couch and curtain cleaning
+
+The Keyword Generator shows **>100 searches/month** for upholstery cleaning in Wollongong, Shellharbour, Kiama, Dapto and Shell Cove, and for curtain cleaning in Shellharbour and Dapto. Couch cleaning in Wollongong is also >100 with KD 0. These are the largest volume buckets found for any town apart from the Wollongong head terms. They are not in the confirmed service list (PRD LB5). **Recommendation:** if the owner can offer upholstery/couch steam cleaning (same equipment as carpet steam), add it. It opens Tier 1 pages in every hub.
+
+### Competitor organic traffic (Ahrefs Traffic Checker)
+
+| Competitor | Est. organic visits/mo | Value | Top keywords (position, volume) | Top pages |
+|---|---|---|---|---|
+| illawarracrew.com.au (local leader, GBP 5.0 from 21 reviews) | 197 | $422 | cleaners wollongong (#2, 150), cleaner wollongong (#2, 70), house cleaning wollongong (#3, 150), cleaning company wollongong (#3, 90), cleaning services wollongong (#4, 150) | `/` 79%, `/booking` 7%, `/office` 4%, `/blog/deep-cleaning-cost-wollongong` 4%, `/locations/albion-park` 3% |
+
+The local leader gets about 197 organic visits a month, almost all from the homepage. It has one location page (Albion Park) and one price blog post. The whole Illawarra market is small, so a site with dedicated service, hub and price pages can lead it. Traffic checks on WCG, Sash, bondcleaninginwollongong and Ryan's were blocked by an Ahrefs CAPTCHA; re-run them in a browser session.
+
+### SERP patterns worth copying or countering
+
+- **Listicles rank:** "Best End of Lease Cleaning Wollongong 2026: Ranked" (sparkleclean.au) ranks on page one for the EOL head term, which supports `/best-cleaning-company-wollongong/` (FR36).
+- **Reddit and Facebook threads rank** (r/wollongong "Cleaner recommendations", Shellharbour community Facebook group). Genuine participation and brand mentions there feed both Google and AI answers.
+- **AI Overview** appears for "commercial cleaning wollongong", so answer-first commercial copy matters.
+- **Exact-match domains** win Shellharbour carpet queries with DR 0. That shows how low the bar is; a strong hub plus a service-in-city page should out-rank them.
+- **Price content earns traffic:** illawarracrew's "deep cleaning cost wollongong" post is one of its top pages, which supports the city price guides (FR35).
+
+### Keyword Generator raw ideas (AU, volume bucket, KD label where shown)
+
+- Wollongong: carpet cleaning (Medium, >100), commercial cleaning (Medium, >100), couch cleaning (Easy, >100), house cleaning (Hard, >100), end of lease cleaning (Easy, >100), upholstery cleaning (Easy, >100), office cleaning (Easy, <100), bond cleaning (Easy, <100), curtain cleaning (Easy, <100), mould, window, oven, rug cleaning (<100); house cleaners (Hard, <100), carpet cleaners (Medium, <100), ndis cleaners (Easy, <100), commercial cleaners (Easy, <100), end of lease cleaners, domestic cleaners, professional cleaners (<100).
+- Shellharbour: upholstery cleaning (>100), curtain cleaning (>100), carpet cleaning (Easy, <100), couch, commercial, office, mattress, house cleaning (<100); cleaners shellharbour (Easy, <100).
+- Kiama: upholstery cleaning (>100), carpet cleaning (Easy, <100), commercial, office, strata, window, oven, mattress, couch cleaning (<100).
+- Dapto: upholstery cleaning (>100), curtain cleaning (>100), carpet cleaning (Medium, <100), couch cleaning (<100).
+- Shell Cove: upholstery cleaning (>100), mattress, curtain, carpet, couch cleaning (<100).
+- Illawarra: end of lease cleaning (Easy, <100), carpet cleaning (Hard, <100), house cleaning (<100), cleaners illawarra (Hard, <100), oven cleaners (<100).
+- National (for angles): end of lease cleaning (Easy, >1,000), bond cleaning (Hard, >1,000), end of lease cleaning near me (Medium, >100).
+
+Earlier demand evidence (below) came from Google AU autocomplete and SERPs.
 
 Intent: T transactional, C commercial investigation, I informational. Autocomplete evidence: **A** = suggested by Google AU autocomplete, **S** = seed only (not suggested).
 
