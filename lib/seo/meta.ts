@@ -9,8 +9,8 @@ export function canonicalUrl(pathOrUrl: string): string {
   return `${siteUrl()}${path}`;
 }
 
-const DEFAULT_OG_IMAGE = "/images/og-default.jpg";
-const DEFAULT_OG_ALT = "Cleaner wiping a kitchen bench in an Illawarra home";
+const DEFAULT_OG_IMAGE = "/images/og-default.png";
+const DEFAULT_OG_ALT = "Shellharbour Cleaning: house and end of lease cleaning in Shellharbour, Kiama, Dapto and Wollongong";
 
 export function buildMeta(opts: {
   path: string;

@@ -20,3 +20,11 @@ test("health endpoint responds", async ({ request }) => {
   expect(res.status()).toBe(200);
   expect((await res.json()).status).toBe("ok");
 });
+
+test("logo and default social image referenced in metadata exist", async ({ request }) => {
+  for (const path of ["/brand/logo.png", "/images/og-default.png"]) {
+    const res = await request.get(path);
+    expect(res.status(), path).toBe(200);
+    expect(res.headers()["content-type"], path).toContain("image/png");
+  }
+});
