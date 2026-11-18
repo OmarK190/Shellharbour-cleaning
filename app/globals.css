@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/*
+ * Design tokens — the only colour, type, radius and shadow source (PRD NFR14,
+ * docs/research/ui-components.md §2 "Escarpment to shore"). Components use these via
+ * Tailwind utilities (bg-deep-water, text-ink, rounded-control, shadow-lift, ...).
+ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-deep-water: #0b3b4a;
+  --color-ink: #14232a;
+  --color-sea-glass: #dcefea;
+  --color-sand: #f5ede1;
+  --color-escarpment: #2f6b4f;
+  --color-coral: #e8603c;
+  --color-paper: #ffffff;
+  --color-alert: #b3261e;
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-figtree), system-ui, sans-serif;
+
+  --radius-control: 10px;
+  --radius-card: 20px;
+
+  --shadow-lift: 0 8px 24px rgb(11 59 74 / 0.14);
+
+  --container-content: 1160px;
+  --container-prose: 680px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem; /* 17px on mobile */
+  line-height: 1.55;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 1.125rem; /* 18px */
+  }
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  color: var(--color-deep-water);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-escarpment);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

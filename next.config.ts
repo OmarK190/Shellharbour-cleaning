@@ -4,6 +4,7 @@ import type { NextConfig } from "next";
 // (Next warns its setTimeout() implementation is unsupported). This site is static
 // marketing content, so classic static generation with `dynamic = "force-static"` is used.
 const nextConfig: NextConfig = {
+  trailingSlash: true,
   turbopack: {
     rules: {
       "*.css": {
