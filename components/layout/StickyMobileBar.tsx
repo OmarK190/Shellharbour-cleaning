@@ -37,7 +37,7 @@ export function StickyMobileBar() {
           Text
         </a>
       )}
-      <Link href={PRICE_CTA.href} data-event="quote_started" className={`${cell} bg-coral text-deep-water`}>
+      <Link href={PRICE_CTA.href} data-event="quote_started" className={`${cell} bg-coral text-paper`}>
         {PRICE_CTA.label}
       </Link>
     </div>

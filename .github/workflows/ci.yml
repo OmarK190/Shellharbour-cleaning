@@ -23,3 +23,48 @@ jobs:
       - run: npm run test
       - run: npm run build
       - run: npm run check
+
+  e2e:
+    needs: verify
+    runs-on: ubuntu-latest
+    env:
+      DEPLOY_ENV: preview
+      GIT_COMMIT: ${{ github.sha }}
+      BASE_URL: http://localhost:8787
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx opennextjs-cloudflare build
+      - name: Start local Worker
+        run: npx wrangler dev --port 8787 &
+      - name: Wait for Worker
+        run: npx --yes wait-on --timeout 120000 http://localhost:8787/api/health/
+      - run: npx playwright test
+      - run: npx lhci autorun
+
+  deploy-staging:
+    needs: e2e
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    env:
+      DEPLOY_ENV: staging
+      GIT_COMMIT: ${{ github.sha }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Skip when Cloudflare secrets are not configured
+        if: env.CLOUDFLARE_API_TOKEN == ''
+        run: echo "CLOUDFLARE_API_TOKEN not set — staging deploy skipped." && exit 0
+      - if: env.CLOUDFLARE_API_TOKEN != ''
+        run: npm run deploy:staging

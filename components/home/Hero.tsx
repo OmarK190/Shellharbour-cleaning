@@ -29,7 +29,7 @@ export function Hero() {
             <Link
               href="/book-now/"
               data-event="quote_started"
-              className="rounded-control bg-coral px-6 py-3 text-lg font-semibold text-deep-water hover:brightness-95"
+              className="rounded-control bg-coral px-6 py-3 text-lg font-semibold text-paper hover:brightness-95"
             >
               See my price
             </Link>

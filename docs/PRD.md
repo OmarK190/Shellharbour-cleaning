@@ -148,7 +148,7 @@ The Illawarra search results are winnable. Page one for "end of lease cleaning s
 
 ### Non Functional
 
-- NFR1: Performance budget on a mid-range phone over 4G (lab and CrUX field data): LCP under 2.0s, CLS under 0.05, INP under 200ms. JavaScript under 100KB gzipped on marketing pages and under 150KB on `/book-now/`. Hero image 120KB or less (AVIF/WebP). Two font families × two weights, self-hosted.
+- NFR1: Performance budget on a mid-range phone over 4G (lab and CrUX field data): LCP under 2.0s, CLS under 0.05, INP under 200ms. JavaScript under 150KB gzipped on marketing pages (Next.js 16 + React 19 framework baseline is ≈130KB; our own client code stays under 25KB) and under 180KB on `/book-now/`. Hero image 120KB or less (AVIF/WebP). Two font families × two weights, self-hosted.
 - NFR2: Marketing pages are statically generated at build time and served from Cloudflare's edge. All indexable content is in the server-rendered HTML; no indexable copy depends on client JavaScript.
 - NFR3: Accessibility conforms to WCAG 2.2 AA: contrast of 4.5:1 for body text, targets of at least 24×24px (48px on the sticky bar and steppers), visible focus, labels above fields, keyboard-operable quote card and calendar, and `prefers-reduced-motion` respected.
 - NFR4: Lighthouse CI on every pull request enforces Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 95 and SEO = 100 on the homepage, a service page, a hub page and `/book-now/`. axe-core reports zero serious or critical violations.
@@ -207,7 +207,7 @@ WCAG 2.2 AA, with body type at 17–18px on mobile. Older and NDIS customers are
 ### Branding
 
 - Name: Shellharbour Cleaning. The voice is direct, specific and Australian without slang filler. Every claim is checkable.
-- Visual direction "Escarpment to shore": `--deep-water #0B3B4A`, `--ink #14232A`, `--sea-glass #DCEFEA`, `--sand #F5EDE1`, `--escarpment #2F6B4F`, `--coral #E8603C` (primary CTA only), `--paper #FFFFFF`, `--alert #B3261E`. Type: Fraunces (display) + Figtree (body).
+- Visual direction "Escarpment to shore": `--deep-water #0B3B4A`, `--ink #14232A`, `--sea-glass #DCEFEA`, `--sand #F5EDE1`, `--escarpment #2F6B4F`, `--coral #C2482A` (primary CTA only, white text; adjusted from #E8603C after an axe contrast failure), `--paper #FFFFFF`, `--alert #B3261E`. Type: Fraunces (display) + Figtree (body).
 - Must not resemble CleanerAtDoor (ink/orange/teal, Plus Jakarta Sans + Inter) or the reference mock `docs/cleaning-website-design.html` (eucalypt/lemon).
 - Component sources: 21st.dev components mapped in `docs/research/ui-components.md` §3, re-skinned to tokens. Shader, WebGL and animated hero components are excluded.
 - Imagery (owner rule, 2026-11-19): people shown in hero, service and hub imagery use free, high-quality, watermark-free stock photos (Unsplash, Pexels, Pixabay) for realism and trust. Non-people cleaning images (rooms, surfaces, products, kit) may be AI-generated or stock. Team profiles, before/after pairs and the job gallery use real photos only (LB7), because they present real people and real work. Every image source is recorded in `public/images/CREDITS.md`. No AI-generated people.

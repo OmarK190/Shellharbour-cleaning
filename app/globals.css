@@ -11,7 +11,7 @@
   --color-sea-glass: #dcefea;
   --color-sand: #f5ede1;
   --color-escarpment: #2f6b4f;
-  --color-coral: #e8603c;
+  --color-coral: #c2482a; /* white text on coral = 4.9:1 (WCAG AA); #e8603c failed at 3.54:1 */
   --color-paper: #ffffff;
   --color-alert: #b3261e;
 

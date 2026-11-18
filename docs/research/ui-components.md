@@ -33,7 +33,7 @@ The Illawarra's identity is the green escarpment dropping to surf beaches, sands
 | `--sea-glass` | `#DCEFEA` | Section tint, trust strip | bg only |
 | `--sand` | `#F5EDE1` | Alternate section tint (warm) | bg only |
 | `--escarpment` | `#2F6B4F` | Links, focus ring, ticks | 6.3:1 on white |
-| `--coral` | `#E8603C` | Primary CTA bg only (with `--deep-water` text, or white text at 700 weight ≥ 18px) | deep-water on coral 4.6:1; verify AA in build |
+| `--coral` | `#C2482A` | Primary CTA bg only, with white text | white on coral 4.9:1 (AA). Original #E8603C failed axe at 3.54:1 with deep-water text |
 | `--paper` | `#FFFFFF` | Main bg | — |
 | `--alert` | `#B3261E` | Errors only | 6.5:1 |
 

@@ -30,7 +30,7 @@ export function Header() {
           <Link
             href={PRICE_CTA.href}
             data-event="quote_started"
-            className="rounded-control bg-coral px-4 py-2 font-semibold text-deep-water hover:brightness-95"
+            className="rounded-control bg-coral px-4 py-2 font-semibold text-paper hover:brightness-95"
           >
             {PRICE_CTA.label}
           </Link>
