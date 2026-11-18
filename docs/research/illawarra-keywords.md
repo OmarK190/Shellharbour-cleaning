@@ -54,7 +54,21 @@ The Keyword Generator shows **>100 searches/month** for upholstery cleaning in W
 |---|---|---|---|---|
 | illawarracrew.com.au (local leader, GBP 5.0 from 21 reviews) | 197 | $422 | cleaners wollongong (#2, 150), cleaner wollongong (#2, 70), house cleaning wollongong (#3, 150), cleaning company wollongong (#3, 90), cleaning services wollongong (#4, 150) | `/` 79%, `/booking` 7%, `/office` 4%, `/blog/deep-cleaning-cost-wollongong` 4%, `/locations/albion-park` 3% |
 
-The local leader gets about 197 organic visits a month, almost all from the homepage. It has one location page (Albion Park) and one price blog post. The whole Illawarra market is small, so a site with dedicated service, hub and price pages can lead it. Traffic checks on WCG, Sash, bondcleaninginwollongong and Ryan's were blocked by an Ahrefs CAPTCHA; re-run them in a browser session.
+| wcgcleaning.com.au | 166 | $710 | cleaning services wollongong (#2, 150), wcg cleaning (#1, 40), house cleaning wollongong (#5, 150), commercial cleaning wollongong (#8, 200), ndis cleaning services wollongong (#5, 90) | `/` 72%, `/wollongong-city-home-cleaning/` 10%, `/ndis-cleaning/` 9%, renovation cleaning 4%, `/cleaning-services-nowra` 3% |
+| ryanscarpetcleaning.com.au | 194 | $383 | carpet cleaning wollongong (#2, 200), upholstery cleaning wollongong (#3, 150), steam cleaning lounge (#1, 60), steam clean lounge (#4, 150), rug cleaning wollongong (#1, 100) | `/` 46%, **`/our-services/upholstery-steam-cleaning/` 38%**, mattress cleaning 3% |
+| sash.cleaning | 103 | $222 | cleaning company wollongong (#2, 90), ndis cleaning services wollongong (#3, 90), house cleaning wollongong (#6, 150), ndis cleaners wollongong (#2, 30), cleaners wollongong (#7, 150) | `/` 70%, **`/ndis-cleaning-services-wollongong` 18%**, EOL Wollongong 7%, commercial 4% |
+| awakencleaningservices.com.au | 75 | $209 | cleaners wollongong (#4, 150), commercial cleaning wollongong (#7, 200), house cleaning wollongong (#8, 150), ndis cleaning services wollongong (#7, 90), house cleaning services wollongong (#4, 40) | `/` 87%, `/commercial` 13% |
+| bondcleaninginwollongong.com.au | 36 | $51 | bond cleaning wollongong (#2, 100), end of lease cleaning wollongong (#9, 150), move out cleaning wollongong (#4, 20), oven cleaning wollongong (#1, 50), end of lease clean wollongong (#1, 40) | `/` 57%, eco bond-cleaning tips post 18%, EOL Wollongong page 14%, oven/BBQ 7% |
+
+**Exact monthly volumes revealed (AU):** commercial cleaning wollongong 200 · carpet cleaning wollongong 200 · cleaners wollongong 150 · house cleaning wollongong 150 · cleaning services wollongong 150 · end of lease cleaning wollongong 150 · upholstery cleaning wollongong 150 · steam clean lounge 150 · bond cleaning wollongong 100 · rug cleaning wollongong 100 · cleaning company wollongong 90 · ndis cleaning services wollongong 90 · cleaner wollongong 70 · steam cleaning lounge 60 · oven cleaning wollongong 50 · end of lease clean wollongong 40 · house cleaning services wollongong 40 · ndis cleaners wollongong 30 · move out cleaning wollongong 20.
+
+**Takeaways:**
+1. Every local competitor gets 36–197 organic visits a month, mostly from its homepage. No one owns this market.
+2. Dedicated service-in-city pages are what earn their non-homepage traffic: Ryan's upholstery page (38%), Sash's NDIS Wollongong page (18%), WCG's NDIS page (9%). This confirms the PRD's service-in-city strategy.
+3. **Upholstery/lounge cleaning is proven demand:** 150 + 150 + 60 searches a month in Wollongong alone, KD 0, and it is Ryan's second-biggest traffic source. This strengthens the LB5 recommendation to offer it.
+4. **NDIS Wollongong is worth a dedicated page:** 90 + 30 searches a month and KD 0, and it drives traffic for two competitors.
+5. Commercial cleaning Wollongong (200/mo, KD 24) is the largest single commercial term; the commercial hub should target it, with office cleaning (KD 0) as a Wollongong service-in-city page.
+6. Oven cleaning Wollongong (50/mo) is a winnable standalone page; bondcleaninginwollongong ranks #1 with a DR 3 site.
 
 ### SERP patterns worth copying or countering
 
