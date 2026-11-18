@@ -3,6 +3,8 @@ import { Fraunces, Figtree } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { StickyMobileBar } from "@/components/layout/StickyMobileBar";
+import { JsonLd } from "@/components/layout/JsonLd";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/schema";
 import "./globals.css";
 
 const fraunces = Fraunces({ subsets: ["latin"], weight: ["600", "700"], display: "swap", variable: "--font-fraunces" });
@@ -21,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <Footer />
         <StickyMobileBar />
+        <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
       </body>
     </html>
   );

@@ -1,3 +1,7 @@
+import { pageMeta } from "@/lib/seo/registry";
+
+export const metadata = pageMeta("/");
+
 export default function HomePage() {
   return (
     <main id="main">
