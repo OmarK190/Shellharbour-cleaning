@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { pageMeta } from "@/lib/seo/registry";
 import { SERVICES, getService } from "@/content/services";
+import { CITY_SERVICES } from "@/content/cityServices";
 import { SITE } from "@/config/site";
 import { siteUrl } from "@/config/site";
 import { JsonLd } from "@/components/layout/JsonLd";
@@ -68,13 +69,19 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
       <Section title="Areas we clean">
         <ul className="flex flex-wrap gap-3">
-          {SITE.hubs.map((h) => (
-            <li key={h.slug}>
-              <Link href={h.path} className="inline-block rounded-full bg-sea-glass px-4 py-2 font-semibold text-deep-water hover:underline">
-                {s.name} in {h.name}
-              </Link>
-            </li>
-          ))}
+          {SITE.hubs.map((h) => {
+            const hasCityPage = CITY_SERVICES.some((c) => c.hub === h.slug && c.service === s.slug);
+            return (
+              <li key={h.slug}>
+                <Link
+                  href={hasCityPage ? `/${h.slug}/${s.slug}/` : h.path}
+                  className="inline-block rounded-full bg-sea-glass px-4 py-2 font-semibold text-deep-water hover:underline"
+                >
+                  {s.name} in {h.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </Section>
 

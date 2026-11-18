@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { pageMeta } from "@/lib/seo/registry";
 import { POSTS } from "@/content/blog";
+import { GUIDES } from "@/content/guides";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 
 export const metadata = pageMeta("/blog/");
@@ -30,6 +31,16 @@ export default function BlogIndexPage() {
               </h2>
               <p className="mt-3">{p.tldr[0]}</p>
               <p className="mt-3 text-sm">Last updated {formatDate(p.updated)}</p>
+            </li>
+          ))}
+        </ul>
+        <h2 className="mt-14 text-3xl font-bold">Checklists, price guides and comparisons</h2>
+        <ul className="mt-6 grid gap-3 md:grid-cols-2">
+          {GUIDES.map((g) => (
+            <li key={g.slug}>
+              <Link href={`/${g.slug}/`} className="font-semibold text-escarpment underline underline-offset-4">
+                {g.h1}
+              </Link>
             </li>
           ))}
         </ul>

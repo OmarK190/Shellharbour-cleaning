@@ -8,6 +8,8 @@ const COMPANY_LINKS = [
   { href: "/guarantee/", label: "Our guarantee" },
   { href: "/facts/", label: "Business facts" },
   { href: "/blog/", label: "Cleaning guides" },
+  { href: "/faq/", label: "FAQ" },
+  { href: "/contact/", label: "Contact" },
 ];
 
 const LEGAL_LINKS = [

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useSyncExternalStore } from "react";
 import { getConsent, setConsent, type Consent } from "@/lib/analytics/events";
 
@@ -25,9 +26,9 @@ export function ConsentBanner() {
     >
       <p>
         We use analytics cookies to see which pages help people book. Nothing loads unless you accept. Read our{" "}
-        <a href="/privacy/" className="text-escarpment underline">
+        <Link href="/privacy/" className="text-escarpment underline">
           privacy policy
-        </a>
+        </Link>
         .
       </p>
       <div className="mt-3 flex gap-3">

@@ -6,6 +6,8 @@ import { POSTS } from "@/content/blog";
 import { FACTS_UPDATED } from "@/content/facts";
 import { SERVICES } from "@/content/services";
 import { HUBS } from "@/content/locations";
+import { GUIDES } from "@/content/guides";
+import { CITY_SERVICES } from "@/content/cityServices";
 
 export { canonicalUrl } from "./meta";
 
@@ -152,6 +154,38 @@ PAGES.push(
     description: "The terms that apply to Shellharbour Cleaning bookings: pricing, payment, cancellations, the re-clean guarantee and refunds.",
     primaryKeyword: "shellharbour cleaning terms",
     pageType: "legal",
+    indexable: true,
+    updated: V1,
+  },
+  ...GUIDES.map(
+    (g): PageEntry => ({ path: `/${g.slug}/`, title: g.title, description: g.description, primaryKeyword: g.primaryKeyword, pageType: g.pageType, indexable: true, updated: g.updated }),
+  ),
+  ...CITY_SERVICES.map(
+    (c): PageEntry => ({
+      path: `/${c.hub}/${c.service}/`,
+      title: c.title,
+      description: c.description,
+      primaryKeyword: `${c.service.replace(/-/g, " ")} ${c.hub}`,
+      pageType: "service-in-city",
+      indexable: true,
+      updated: V1,
+    }),
+  ),
+  {
+    path: "/faq/",
+    title: "Cleaning FAQ | Shellharbour Cleaning",
+    description: "Answers about booking, prices, payment, cancellations and the re-clean guarantee for Shellharbour Cleaning in Shellharbour, Kiama, Dapto and Wollongong.",
+    primaryKeyword: "shellharbour cleaning faq",
+    pageType: "company",
+    indexable: true,
+    updated: V1,
+  },
+  {
+    path: "/contact/",
+    title: "Contact Shellharbour Cleaning",
+    description: "Contact Shellharbour Cleaning: hours, service areas in Shellharbour, Kiama, Dapto and Wollongong, ABN, and the fastest way to get your price.",
+    primaryKeyword: "contact shellharbour cleaning",
+    pageType: "company",
     indexable: true,
     updated: V1,
   },
