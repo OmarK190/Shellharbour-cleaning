@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy:staging": "opennextjs-cloudflare build && wrangler deploy --env staging"
+    "deploy:staging": "opennextjs-cloudflare build && wrangler deploy --env staging",
+    "check:launch": "tsx scripts/checks/check-launch.mjs"
   },
   "dependencies": {
     "next": "16.4.6",
