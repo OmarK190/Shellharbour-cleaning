@@ -7,6 +7,7 @@ const COMPANY_LINKS = [
   { href: "/reviews/", label: "Reviews" },
   { href: "/guarantee/", label: "Our guarantee" },
   { href: "/facts/", label: "Business facts" },
+  { href: "/blog/", label: "Cleaning guides" },
 ];
 
 const LEGAL_LINKS = [

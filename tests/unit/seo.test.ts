@@ -1,5 +1,5 @@
 import { PAGES, pageMeta, canonicalUrl } from "@/lib/seo/registry";
-import { organizationJsonLd, localBusinessJsonLd, breadcrumbJsonLd, faqJsonLd, personJsonLd } from "@/lib/seo/schema";
+import { organizationJsonLd, localBusinessJsonLd, breadcrumbJsonLd, faqJsonLd, personJsonLd, articleJsonLd } from "@/lib/seo/schema";
 import { SITE } from "@/config/site";
 import robots from "@/app/robots";
 import sitemap from "@/app/sitemap";
@@ -64,6 +64,23 @@ test("breadcrumb, faq and person builders", () => {
   expect(p.sameAs).toEqual(["https://www.linkedin.com/in/x"]);
 });
 
+test("article builder carries headline, dates, author, publisher and canonical", () => {
+  const a = articleJsonLd({
+    path: "/blog/x/",
+    headline: "Headline",
+    description: "Desc",
+    published: "2026-11-19",
+    updated: "2026-11-20",
+    author: { name: "Shellharbour Cleaning team", role: "Cleaning" },
+  });
+  expect(a["@type"]).toBe("Article");
+  expect(a.datePublished).toBe("2026-11-19");
+  expect(a.dateModified).toBe("2026-11-20");
+  expect(a.publisher).toEqual({ "@id": "https://staging.shellharbourcleaning.invalid/#organization" });
+  expect(a.mainEntityOfPage).toBe("https://staging.shellharbourcleaning.invalid/blog/x/");
+  expect((a.author as { name: string }).name).toBe("Shellharbour Cleaning team");
+});
+
 test("robots disallows all outside production", () => {
   process.env.DEPLOY_ENV = "staging";
   const r = robots();
@@ -74,7 +91,23 @@ test("robots allows AI crawlers in production", () => {
   process.env.DEPLOY_ENV = "production";
   const r = robots();
   const agents = (Array.isArray(r.rules) ? r.rules : [r.rules]).flatMap((x) => x.userAgent);
-  for (const a of ["Googlebot", "Bingbot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "ClaudeBot", "Google-Extended"]) {
+  // Search-citation bots (OAI-SearchBot, Claude-SearchBot, PerplexityBot, Applebot) and training bots (GPTBot,
+  // ClaudeBot, Google-Extended, Applebot-Extended) are both allowed: the owner wants AI tools to know the brand.
+  for (const a of [
+    "Googlebot",
+    "Bingbot",
+    "OAI-SearchBot",
+    "ChatGPT-User",
+    "GPTBot",
+    "Claude-SearchBot",
+    "Claude-User",
+    "ClaudeBot",
+    "PerplexityBot",
+    "Perplexity-User",
+    "Google-Extended",
+    "Applebot",
+    "Applebot-Extended",
+  ]) {
     expect(agents).toContain(a);
   }
 });

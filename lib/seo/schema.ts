@@ -87,6 +87,33 @@ export function faqJsonLd(faqs: { q: string; a: string }[]): Json {
   };
 }
 
+export function articleJsonLd(a: {
+  path: string;
+  headline: string;
+  description: string;
+  published: string;
+  updated: string;
+  author: { name: string; role: string };
+}): Json {
+  // The team byline is an Organization; a named author becomes a Person once the owner supplies one.
+  const isTeam = /team$/i.test(a.author.name);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: a.headline,
+    description: a.description,
+    datePublished: a.published,
+    dateModified: a.updated,
+    author: isTeam
+      ? { "@type": "Organization", name: a.author.name, url: `${siteUrl()}/` }
+      : { "@type": "Person", name: a.author.name, jobTitle: a.author.role },
+    publisher: { "@id": orgId() },
+    mainEntityOfPage: `${siteUrl()}${a.path}`,
+    image: `${siteUrl()}/images/og-default.png`,
+    inLanguage: "en-AU",
+  };
+}
+
 export function personJsonLd(p: { name: string; role: string; linkedin: string }): Json {
   return {
     "@context": "https://schema.org",

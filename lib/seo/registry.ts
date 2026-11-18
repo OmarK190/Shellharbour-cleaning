@@ -2,6 +2,8 @@
 // title ≤ 60, description ≤ 155, one URL per primary keyword, content-sourced dates.
 import type { Metadata } from "next";
 import { buildMeta } from "./meta";
+import { POSTS } from "@/content/blog";
+import { FACTS_UPDATED } from "@/content/facts";
 
 export { canonicalUrl } from "./meta";
 
@@ -44,6 +46,40 @@ export const PAGES: PageEntry[] = [
     updated: "2026-11-19",
   },
 ];
+
+PAGES.push(
+  {
+    path: "/facts/",
+    title: "Shellharbour Cleaning Facts | Prices, Areas, ABN",
+    description:
+      "Verified facts about Shellharbour Cleaning: services, prices from $121, service areas in the Illawarra, hours, ABN, guarantee and payment terms.",
+    primaryKeyword: "shellharbour cleaning",
+    pageType: "facts",
+    indexable: true,
+    updated: FACTS_UPDATED,
+  },
+  {
+    path: "/blog/",
+    title: "Cleaning Guides and Price Advice | Shellharbour Cleaning",
+    description:
+      "Cleaning prices, end of lease advice and NDIS guides for Wollongong, Shellharbour, Kiama and Dapto, written by Shellharbour Cleaning.",
+    primaryKeyword: "cleaning advice illawarra",
+    pageType: "blog",
+    indexable: true,
+    updated: POSTS.map((p) => p.updated).sort().at(-1)!,
+  },
+  ...POSTS.map(
+    (p): PageEntry => ({
+      path: `/blog/${p.slug}/`,
+      title: p.title,
+      description: p.description,
+      primaryKeyword: p.primaryKeyword,
+      pageType: "blog",
+      indexable: true,
+      updated: p.updated,
+    }),
+  ),
+);
 
 export function getPage(path: string): PageEntry {
   const page = PAGES.find((p) => p.path === path);

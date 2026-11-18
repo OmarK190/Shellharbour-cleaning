@@ -4,6 +4,33 @@ Date: 2026-11-19.
 
 **Data sources:** (1) Ahrefs **free** tools run live in Chrome on 2026-11-19, country = Australia: Keyword Generator (volume bucket + KD label), Keyword Difficulty Checker (exact KD, referring domains needed, top-10 SERP with DR for positions 1–5), Website Traffic Checker (competitor organic keywords and top pages). (2) Google AU autocomplete. (3) Live SERPs via WebSearch. The Ahrefs API (MCP) is plan-gated, so the free web tools were used instead.
 
+## 0b. Semrush AU data (2026-11-19, `phrase_these`, database `au`) — blog and service targets
+
+Semrush KD is 0–100. Intent: 0 commercial, 1 informational, 3 transactional; blank = not classified. Cost: 230 API units.
+
+| Keyword | Volume/mo | KD | Intent | CPC (AUD) | Target URL (built?) |
+|---|---|---|---|---|---|
+| ndis cleaning services | 1,600 | 15 | commercial | 4.09 | `/services/ndis-cleaning-services/` (Epic 3) |
+| ndis cleaning | 1,600 | 14 | commercial | — | same page |
+| end of lease cleaning cost | 880 | 4 | informational | 2.74 | `/blog/end-of-lease-cleaning-cost/` (**built**) |
+| how much does carpet cleaning cost | 880 | 11 | informational | 1.76 | `/blog/how-much-does-carpet-cleaning-cost/` (**built**) |
+| end of lease cleaning checklist | 590 | 15 | informational | 1.88 | `/end-of-lease-cleaning-checklist/` (Story 6.1) |
+| house cleaning prices | 390 | 8 | transactional | 1.32 | `/blog/house-cleaning-prices-wollongong/` (**built**) |
+| end of lease cleaning wollongong | 260 | 13 | commercial | 3.61 | `/wollongong/end-of-lease-cleaning/` (Story 4.5) |
+| cleaners wollongong | 210 | 14 | commercial | 3.44 | `/locations/wollongong/` (Story 4.4) |
+| bond cleaning checklist | 170 | 8 | informational | 0.75 | `/end-of-lease-cleaning-checklist/` |
+| house cleaning wollongong | 170 | 19 | commercial | 3.30 | `/locations/wollongong/` |
+| how much does end of lease cleaning cost | 110 | 14 | informational | 2.17 | `/blog/end-of-lease-cleaning-cost/` (**built**) |
+| how much does a cleaner cost | 110 | 9 | informational | 1.00 | `/blog/house-cleaning-prices-wollongong/` (**built**) |
+| bond cleaning wollongong | 110 | 12 | commercial | 3.68 | `/wollongong/end-of-lease-cleaning/` |
+| what is deep cleaning | 40 | 0 | — | — | `/services/deep-cleaning/` FAQ |
+| what does an end of lease clean include | 30 | 0 | — | 1.54 | checklist page |
+| carpet steam cleaning cost | 30 | 0 | — | 2.15 | carpet blog post |
+| does ndis cover cleaning | 20 | 0 | — | — | `/blog/does-ndis-cover-cleaning/` (**built**) |
+| how much does a cleaner cost per hour, bond clean checklist nsw, bond back nsw, deep cleaning vs regular cleaning, airbnb cleaning cost | 10–20 each | 0 | — | — | FAQs / X-vs-Y pages (Story 6.6) |
+
+Takeaways: the highest-value, easiest targets are **end of lease cleaning cost (880, KD 4)**, **house cleaning prices (390, KD 8)**, **bond cleaning checklist (170, KD 8)** and **how much does carpet cleaning cost (880, KD 11)**. **NDIS cleaning (1,600 + 1,600, KD 14–15, CPC $4.09)** is the largest commercial term, so the NDIS service page (Epic 3) should be prioritised, supported by the NDIS blog post. Semrush puts the Wollongong head terms higher than Ahrefs did (cleaners wollongong 210, house cleaning wollongong 170) and with lower KD (14–19).
+
 ## 0. Ahrefs live data — priority targets (buying intent × low difficulty)
 
 KD = Ahrefs Keyword Difficulty (0–100). "Links" = Ahrefs' estimate of referring domains needed for the top 10. Volume is the Ahrefs bucket, or the exact monthly figure where the Traffic Checker showed one.
