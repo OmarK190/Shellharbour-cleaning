@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { buildMeta } from "./meta";
 import { POSTS } from "@/content/blog";
 import { FACTS_UPDATED } from "@/content/facts";
+import { SERVICES } from "@/content/services";
+import { HUBS } from "@/content/locations";
 
 export { canonicalUrl } from "./meta";
 
@@ -47,7 +49,112 @@ export const PAGES: PageEntry[] = [
   },
 ];
 
+const V1 = "2026-11-19";
+
 PAGES.push(
+  {
+    path: "/services/",
+    title: "Cleaning Services Illawarra | Prices From $121",
+    description: "Every Shellharbour Cleaning service with its published price: regular, deep, end of lease, carpet, NDIS, Airbnb and office cleaning across the Illawarra.",
+    primaryKeyword: "cleaning services illawarra",
+    pageType: "company",
+    indexable: true,
+    updated: V1,
+  },
+  ...SERVICES.map(
+    (s): PageEntry => ({
+      path: `/services/${s.slug}/`,
+      title: s.title,
+      description: s.description,
+      primaryKeyword: s.name.toLowerCase(),
+      pageType: "service",
+      indexable: true,
+      updated: V1,
+    }),
+  ),
+  {
+    path: "/locations/",
+    title: "Areas We Clean | Shellharbour, Kiama, Dapto, Wollongong",
+    description: "Shellharbour Cleaning serves Shellharbour City, Kiama Municipality, the Dapto district and Wollongong. Find your suburb and see your price.",
+    primaryKeyword: "cleaners illawarra",
+    pageType: "company",
+    indexable: true,
+    updated: V1,
+  },
+  ...HUBS.map(
+    (h): PageEntry => ({
+      path: `/locations/${h.slug}/`,
+      title: h.title,
+      description: h.description,
+      primaryKeyword: `cleaners ${h.slug}`,
+      pageType: "hub",
+      indexable: true,
+      updated: V1,
+    }),
+  ),
+  {
+    path: "/pricing/",
+    title: "Cleaning Prices Illawarra | From $121, GST Included",
+    description: "Every Shellharbour Cleaning price in one place: regular $60.50/hr, end of lease $190–$410, deep from $181.50, carpet from $50 a room. GST included.",
+    primaryKeyword: "cleaning prices illawarra",
+    pageType: "pricing",
+    indexable: true,
+    updated: V1,
+  },
+  {
+    path: "/book-now/",
+    title: "See Your Cleaning Price | Shellharbour Cleaning",
+    description: "Pick your service, bedrooms and bathrooms to see your fixed Shellharbour Cleaning price for homes in Shellharbour, Kiama, Dapto and Wollongong.",
+    primaryKeyword: "book a cleaner illawarra",
+    pageType: "pricing",
+    indexable: true,
+    updated: V1,
+  },
+  {
+    path: "/reviews/",
+    title: "Shellharbour Cleaning Reviews",
+    description: "Customer reviews for Shellharbour Cleaning in Shellharbour, Kiama, Dapto and Wollongong. Only real reviews with a source are published here.",
+    primaryKeyword: "shellharbour cleaning reviews",
+    pageType: "company",
+    indexable: true,
+    updated: V1,
+  },
+  {
+    path: "/guarantee/",
+    title: "Our Re-Clean Guarantee | Shellharbour Cleaning",
+    description: "Report a missed area within 24 hours with photos: we reply within 48 hours, re-clean free, and refund in full within 15 days if you are still unhappy.",
+    primaryKeyword: "cleaning guarantee",
+    pageType: "company",
+    indexable: true,
+    updated: V1,
+  },
+  {
+    path: "/about/",
+    title: "About Shellharbour Cleaning | Illawarra Cleaners",
+    description: "Who Shellharbour Cleaning is, where we clean, how we price, and the facts behind the business, including our ABN.",
+    primaryKeyword: "about shellharbour cleaning",
+    pageType: "company",
+    indexable: true,
+    updated: V1,
+  },
+  {
+    path: "/privacy/",
+    title: "Privacy Policy | Shellharbour Cleaning",
+    description: "How Shellharbour Cleaning collects, uses, stores and protects your personal information under the Australian Privacy Principles.",
+    primaryKeyword: "shellharbour cleaning privacy policy",
+    pageType: "legal",
+    indexable: true,
+    updated: V1,
+  },
+  {
+    path: "/terms/",
+    title: "Terms of Service | Shellharbour Cleaning",
+    description: "The terms that apply to Shellharbour Cleaning bookings: pricing, payment, cancellations, the re-clean guarantee and refunds.",
+    primaryKeyword: "shellharbour cleaning terms",
+    pageType: "legal",
+    indexable: true,
+    updated: V1,
+  },
   {
     path: "/facts/",
     title: "Shellharbour Cleaning Facts | Prices, Areas, ABN",
