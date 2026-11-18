@@ -8,7 +8,7 @@ The owner wants more energy than the reference mock. The no-ai-slop rules and th
 
 | Engagement source | Allowed | Instead of |
 |---|---|---|
-| Real photography, many images (hero, every service, every hub, gallery of jobs) | Yes — this is the main lever | Stock models with spray bottles, AI-generated people |
+| Many high-quality images (hero, every service, every hub, gallery of jobs) — people from free stock, non-people scenes AI or stock, team and before/after real (§4) | Yes — this is the main lever | Watermarked or low-res images, AI-generated people |
 | Interactive price tool with live price easing | Yes — the one "memorable element" | Static "Request a quote" button |
 | Before/after drag slider on real job photos | Yes | Carousel of generic room shots |
 | Room-by-room photo + checklist pairing | Yes (full list visible; photo swaps) | Hidden accordions of inclusions |
@@ -76,8 +76,18 @@ Not used: Liquid Metal Hero, Shader Animation, WebGL Shader, Hero ASCII, Backgro
 
 ## 4. Imagery plan
 
-1. **Real shoot (launch blocker for hero images):** 1 half-day with 2 cleaners in 3 Illawarra homes (unit, family house, holiday let). Shot list: hero (cleaner at a bright kitchen bench with a recognisable coastal-light window), each service in action (oven, shower screen, carpet wand, window, bond-clean walkthrough with checklist), before/after pairs from the same angle, team portraits, van/kit, and local context exteriors (Shell Cove marina, Kiama harbour, Wollongong streetscape, no people without releases).
-2. **Interim (until the shoot):** licensed stock from Unsplash / Pexels (free licence, record photographer + URL in `public/images/CREDITS.md`). No AI-generated people or interiors. Stock is never captioned as "our team" or "our job".
+Owner rule (2026-11-19): images with **people** use free, high-quality, watermark-free stock photos (they read as real and build trust); images **without people** (cleaning scenes, products, rooms, surfaces, details) may be AI-generated or stock.
+
+| Image type | Source | Rule |
+|---|---|---|
+| People in hero, service and hub imagery (cleaner at work, customer at home) | Free stock: Unsplash, Pexels, Pixabay — commercial-use licence, no watermark, ≥ 2000px source | Record photographer + URL in `public/images/CREDITS.md`; never captioned or implied as "our team" or a named cleaner |
+| Non-people cleaning images (spotless kitchen, shower screen, oven interior, carpet texture, products, kit) | AI-generated or stock | Photorealistic, no text artefacts, no fake brand logos; reviewed by a human before use; recorded in `CREDITS.md` as "AI-generated" with tool + date |
+| Team profiles `/team/{name}/`, "Your cleaners" blocks | **Real photos only** (with consent) | Shows a real named person — stock or AI here would mislead customers |
+| Before/after pairs, job gallery, "jobs done nearby" | **Real job photos only** (customer photo consent) | Presented as our work — stock or AI here is a misleading claim (ACCL) |
+| Local context (Shell Cove marina, Kiama harbour, Wollongong streets) | Own photos or licensed stock | Must be the real place named |
+
+1. **Real shoot (still recommended, replaces stock over time):** 1 half-day with 2 cleaners in 3 Illawarra homes. Shot list: team portraits, before/after pairs from the same angle, services in action, van/kit. Required before the team and before/after sections can show.
+2. **At launch:** stock people + AI/stock non-people images fill hero, service and hub imagery; team, before/after and gallery sections stay hidden until real photos exist.
 3. **Specs:** AVIF + WebP, hero ≤ 120KB, `next/image` with explicit sizes, LCP image `priority`, all others lazy. Alt text describes the task and place ("Cleaner wiping a stovetop in a Shell Cove apartment"). Unique image per page (port CleanerAtDoor `check-visible-image-uniqueness.mjs`). Per-page OG image from the page hero.
 
 ## 5. Homepage section → component check
