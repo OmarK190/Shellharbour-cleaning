@@ -1,6 +1,11 @@
 FROM node:24-bookworm-slim
 WORKDIR /app
 
+# workerd (started by initOpenNextCloudflareForDev during next build) needs system CA certs.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 
