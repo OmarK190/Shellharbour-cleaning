@@ -1,0 +1,13 @@
+.git
+.github
+node_modules
+.next
+.open-next
+.wrangler
+.firebase
+coverage
+playwright-report
+test-results
+.env*
+.dev.vars*
+**/*.pem

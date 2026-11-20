@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "site": "shellharbourcleaning",
+    "public": "public",
+    "ignore": ["**/*"],
+    "rewrites": [
+      {
+        "source": "**",
+        "run": {
+          "serviceId": "shellharbour-cleaning",
+          "region": "australia-southeast1"
+        }
+      }
+    ]
+  }
+}

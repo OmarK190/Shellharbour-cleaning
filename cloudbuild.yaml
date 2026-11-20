@@ -1,0 +1,38 @@
+steps:
+  - id: Build
+    name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --build-arg
+      - GIT_COMMIT=${COMMIT_SHA}
+      - --tag
+      - ${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}
+      - .
+  - id: Push
+    name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - ${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}
+  - id: Deploy
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+    entrypoint: gcloud
+    args:
+      - run
+      - services
+      - update
+      - ${_SERVICE_NAME}
+      - --image=${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}
+      - --region=${_DEPLOY_REGION}
+      - --project=${PROJECT_ID}
+      - --quiet
+
+substitutions:
+  _AR_HOSTNAME: australia-southeast1-docker.pkg.dev
+  _AR_PROJECT_ID: ${PROJECT_ID}
+  _AR_REPOSITORY: cloud-run-source-deploy
+  _DEPLOY_REGION: australia-southeast1
+  _SERVICE_NAME: shellharbour-cleaning
+
+options:
+  dynamicSubstitutions: true
+  logging: CLOUD_LOGGING_ONLY
